@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Greeting</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="card">
+        <div class="greeting">
+            <h1 class="title">З Новим Роком!</h1>
+            <p class="message">Бажаємо вам веселих свят та щасливого Нового Року!</p>
+        </div>
+        <div class="fireworks">
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+/* styles.css */
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #001f3f; /* Dark blue background */
+}
+
+.card {
+    text-align: center;
+    background-color: #f0f0f0; /* Light gray card background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.greeting {
+    color: #e44d26; /* Red text color */
+}
+
+.title {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.message {
+    font-size: 18px;
+}
+
+.fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.firework {
+    width: 10px;
+    height: 10px;
+    background-color: #f39c12; /* Yellow fireworks */
+    border-radius: 50%;
+    position: absolute;
+    animation: explode 2s infinite;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+</style>
+<script>
+
+</script>

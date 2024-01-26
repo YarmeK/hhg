@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #pokemonContainer {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="pokemonCanvas"></canvas>
+    <div id="pokemonContainer">
+        <a href="https://pokemondb.net/pokedex/ponyta">
+            <img src="https://img.pokemondb.net/sprites/silver/normal/ponyta.png" alt="Ponyta" id="pokemonImage">
+        </a>
+    </div>
+    <script>
+        const canvas = document.getElementById('pokemonCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pokemonImage = document.getElementById('pokemonImage');
+
+        class Pokemon {
+            constructor(x, y, radius) {
+                this.x = x;
+                this.y = y;
+                this.angle = 0;
+                this.radius = radius;  // Радіус руху по колу
+                this.frequency = 0.03; // Частота руху
+            }
+
+            move() {
+                this.angle += this.frequency;
+                this.x = canvas.width / 2 + Math.cos(this.angle) * this.radius;
+                this.y = canvas.height / 2 + Math.sin(this.angle) * this.radius;
+            }
+
+            draw() {
+                const legRotation = this.angle + Math.PI / 2; // Додаємо 90 градусів до кута для повороту ніг
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(legRotation);
+                ctx.drawImage(pokemonImage, -pokemonImage.width / 2, -pokemonImage.height / 2);
+                ctx.restore();
+            }
+        }
+
+        const ponyta = new Pokemon(canvas.width / 2, canvas.height / 2, 35);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ponyta.move();
+            ponyta.draw();
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
